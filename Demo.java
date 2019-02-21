@@ -8,17 +8,11 @@ import java.util.Scanner;
 
 class Demo{
 	public static void main(String[] args) {
-		Stenenzakje.toonAlleStenen();
 		Speler speler1 = new Speler();
 		speler1.plank.plankjeVullen();
-		speler1.toonPlankje();
 		System.out.println("wilt u \nruilen (r) of \nwoord uitleggen (w)");
-		Scanner invoer = new Scanner(System.in);
-		System.out.println( invoer.nextLine() );
-		
-		speler1.toonPlankje();
+		speler1.keuze();
 		System.out.println("Bedankt voor het spelen");
-		Stenenzakje.toonAlleStenen();
 	}
 }
 class Speler{
@@ -32,6 +26,31 @@ class Speler{
 		}
 		System.out.println(antwoord);
 	}
+	public void keuze() {
+		int eindeKeuze = 0;
+		Scanner invoer = new Scanner(System.in);		
+		while(eindeKeuze == 0) {
+			String mogelijkheden = invoer.nextLine();
+			
+			switch(mogelijkheden) {
+			case "r":
+				toonPlankje();
+				plank.ruilenLetter();
+				toonPlankje();
+				break;
+			case "w":
+				System.out.println("Leg uw woord uit");
+				String uitTeLeggenWoord = invoer.nextLine();
+				System.out.println("ingevoerd is "+ uitTeLeggenWoord);
+				break;
+			case "q":
+				System.out.println("u wilt stoppen");
+				return;
+			default:
+				System.out.println("Maak andere keuze");
+			}
+		}
+	}
 	
 }
 class Plankje{
@@ -43,6 +62,10 @@ class Plankje{
 		}
 	}
 	void ruilenLetter() {
+		
+		stenenOpPlankje.remove(0);
+		stenenOpPlankje.add( Stenenzakje.stenen.get(0) );
+		Stenenzakje.stenen.remove(0);
 		
 	}
 }
@@ -56,7 +79,7 @@ class Stenenzakje{
 	static ArrayList<Steen> stenen = new ArrayList();
 	static Random husselaar = new Random();
 	static{
-		for( int i = 0; i < 20 ; i++) {
+		for( int i = 0; i < 200 ; i++) {
 			char getal = (char)(husselaar.nextInt(26) + 65);
 			Steen steentje = new Steen(getal);
 			stenen.add(steentje);
