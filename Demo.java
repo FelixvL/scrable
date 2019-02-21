@@ -2,7 +2,8 @@ package scrable;
 import java.util.ArrayList;
 import java.util.Random;
 
-// extra text
+// extra text nog meer
+
 
 class Demo{
 	public static void main(String[] args) {	
