@@ -1,20 +1,39 @@
+package scrable;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 class Demo{
 	public static void main(String[] args) {	
-		System.out.println("Scrable");
 		Speler speler1 = new Speler();
-		System.out.println( speler1.plank );
-		System.out.println( speler1.plank.steentje.letter );
+		speler1.plank.plankjeVullen();
+		speler1.toonPlankje();
+		
 	}
 }
 class Speler{
 	String naam;
 	Plankje plank = new Plankje();
+	
+	public void toonPlankje() {
+		String antwoord = "";
+		for(int i = 0 ; i < 7 ; i++) {
+			antwoord = antwoord + plank.stenenOpPlankje.get(i).letter;
+		}
+		System.out.println(antwoord);
+	}
+	
 }
 class Plankje{
+	ArrayList<Steen> stenenOpPlankje = new ArrayList();
+	void plankjeVullen() {
+		for(int i = 0 ; i < 7; i ++) {
+			stenenOpPlankje.add(  Stenenzakje.stenen.get(i)   );
+		}
+	}
+	
 	Steen steentje = Stenenzakje.stenen.get(0);
+	Steen steentje2 = Stenenzakje.stenen.get(1);
 }
 class Steen{
 	char letter;
@@ -26,9 +45,11 @@ class Stenenzakje{
 	static ArrayList<Steen> stenen = new ArrayList();
 	static Random husselaar = new Random();
 	static{
-		char getal = (char)(husselaar.nextInt(26) + 65);
-		Steen steentje = new Steen(getal);
-		stenen.add(steentje);
+		for( int i = 0; i < 20 ; i++) {
+			char getal = (char)(husselaar.nextInt(26) + 65);
+			Steen steentje = new Steen(getal);
+			stenen.add(steentje);
+		}
 	}
 }
 
