@@ -1,7 +1,8 @@
 package scrable;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+// extra text
 
 class Demo{
 	public static void main(String[] args) {	
